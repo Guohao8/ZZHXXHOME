@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style type="text/css">
+    .coverage_sing {
+      width: 40%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      right: 300%;
+      background-color: rgba(0, 0, 0, .4);
+      display: block;
+      z-index: 9999;
+      transition-duration: 800ms;
+    }
+
+    .coverage_sing_right {
+      width: 40%;
+      height: 100%;
+      margin-right: 60%;
+      background-color: #eee;
+    }
+
+    /* 军标管理 */
+    .coverage_sign {
+      width: 100%;
+      height: 50px;
+      line-height: 50px;
+      display: flex;
+      /* justify-content: center; */
+      align-items: center;
+      background: white;
+    }
+
+    .coverage_sign_text {
+      font-size: 16px;
+      /* line-height: 50px; */
+      width: 86%;
+      height: 50px;
+    }
+
+    .coverage_sign_add {
+      width: 20px;
+      height: 20px;
+      border: 1px solid rgb(0, 120, 215);
+      line-height: 19px;
+      border-radius: 50%;
+      color: rgb(0, 120, 215);
+      margin-right: 4%;
+    }
+
+    .coverage_army {
+      width: 100%;
+      height: 130px;
+      background: #eee;
+    }
+
+    .coverage_army_name {
+      width: 84%;
+      height: 36px;
+      line-height: 36px;
+      margin: 0 8%;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .coverage_army_name input {
+      width: 70%;
+      border: none;
+      outline: none;
+    }
+
+    .coverage_army_name select {
+      width: 70%;
+      border: none;
+      background: none;
+      appearance: none;
+      outline: none;
+    }
+
+    .coverage_army_height {
+      width: 50%;
+      height: 30px;
+      border: 1px solid #CCC;
+      border-radius: 4px;
+      margin-top: 2px;
+      display: flex;
+    }
+
+    .coverage_army_height_sub {
+      width: 33.33%;
+      height: 30px;
+      text-align: center;
+      line-height: 28px;
+      font-size: 20px;
+    }
+
+    .coverage_army_height input {
+      width: 33.33%;
+      border: none;
+      height: 30px;
+      border-left: 1px solid #eee;
+      border-right: 1px solid #eee;
+      background: #eee;
+      text-align: center;
+    }
+
+    .coverage_button {
+      width: 100%;
+      height: 46px;
+      border-bottom: 1px solid #ccc;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      color: white;
+      font-size: 16px;
+      padding: 10%;
+      box-sizing: border-box;
+    }
+
+    .coverage_button div {
+      width: 50px;
+      height: 28px;
+      border-radius: 4px;
+      text-align: center;
+      line-height: 27px;
+      background: rgb(0, 120, 215);
+    }
+
+    .coverage_army_line::-webkit-slider-thumb {
+      appearance: none;
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+    }
+
+    input[type=range] {
+      -webkit-appearance: none;
+      border-radius: 50%;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 20px;
+      width: 20px;
+      margin-top: -8px;
+      background: #ffffff;
+      border-radius: 50%;
+      /*外观设置为圆形*/
+      border: 0.12rem solid #aaa;
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+      height: 8px;
+      border-radius: 8px;
+      /*将轨道设为圆角*/
+      background: #aaa;
+      border: 1px solid #eee;
+    }
+  </style>
+  <script src="js/jquery-3.4.1.js"></script>
+</head>
+
+<body>
+  <!--军标遮罩层 阻止冒泡 -->
+  <div class="coverage_sing" onclick="clickHideSign()" id="armyBox">
+    <div class="coverage_sing_right" onClick="event.cancelBubble = true">
+      <div class="coverage_sign">
+        <div class="coverage_sign_text">军标管理</div>
+        <div class="coverage_sign_add">+</div>
+      </div>
+      <div class="coverage_army">
+
+      </div>
+      <form action="" style="width: 100%;background: white;">
+        <div class="coverage_army_name">
+          名称 <input type="text" value="大炮">
+        </div>
+        <div class="coverage_army_name">
+          颜色
+          <select name="" id="">
+            <option value="red">红</option>
+            <option value="yellow">黄</option>
+          </select>
+        </div>
+        <div class="coverage_army_name">
+          线型
+          <select name="" id="">
+            <option value="solid">实线</option>
+            <option value="dashed">虚线</option>
+          </select>
+        </div>
+        <div class="coverage_army_name">
+          线粗 <input type="range" value="5" min="1" max="10" oninput="armyLine(event)" id="lineVal"
+            class="coverage_army_line"> -->
+          <!-- 滑动滑块时动态显示的值 -->
+          <!-- <div class="slider_block">
+
+            </div> -->
+        </div>
+        <div class="coverage_army_name">
+          角度 <input type="range" value="6" min="1" max="360" oninput="armyAngle(event)">
+        </div>
+        <div class="coverage_army_name">
+          位置 <input type="text" value="111.111,111.111">
+        </div>
+        <div class="coverage_army_name">
+          长
+          <div class="coverage_army_height">
+            <div class="coverage_army_height_sub" onclick="heightSub()">-</div>
+            <input type="number" value="6" id="armyHeight">
+            <div class="coverage_army_height_sub " style="font-size: 16px;" onclick="heightAdd()">+</div>
+          </div>
+        </div>
+        <div class="coverage_army_name">
+          宽
+          <div class="coverage_army_height">
+            <div class="coverage_army_height_sub" onclick="widthSub()">-</div>
+            <input type="number" value="6" id="armyWidth">
+            <div class="coverage_army_height_sub " style="font-size: 16px;" onclick="widthAdd()">+</div>
+          </div>
+        </div>
+        <div class="coverage_button">
+          <div class="coverage_button_confirm">确认</div>
+          <div class="coverage_button_confirm">预览</div>
+          <div class="coverage_button_confirm" onclick="clickHideSign()">取消</div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- 图层遮罩层  阻止冒泡 -->
+  <!--
+         <div class="coverage_sing" onclick="clickLayerHide()">
+        <div class="coverage_sing_right" onClick="event.cancelBubble = true">
+        </div>
+      </div> 
+      -->
+
+  <script>
+    //军标图层修改长 减按钮
+    var armyHeight = $("#armyHeight").val()
+
+    function heightSub() {
+      armyHeight--
+      if (armyHeight < 1) {
+        $("#armyHeight").val(1)
+      } else {
+        $("#armyHeight").val(armyHeight)
+      }
+    }
+    //军标图层修改长 加按钮
+    function heightAdd() {
+      armyHeight++;
+      $("#armyHeight").val(armyHeight)
+    }
+    //军标图层修改 宽 减按钮
+    var armyWidth = $("#armyWidth").val()
+
+    function widthSub() {
+      armyWidth--
+      if (armyWidth < 1) {
+        $("#armyWidth").val(1)
+      } else {
+        $("#armyWidth").val(armyWidth)
+      }
+    }
+    //军标图层修改 宽 加按钮
+    function widthAdd() {
+      armyWidth++
+      $("#armyWidth").val(armyWidth)
+    }
+
+    //线粗细的值
+    function armyLine(event) {
+      console.log(event.target.value);
+
+    }
+    //角度的值
+    function armyAngle(event) {
+      console.log(event.target.value);
+    }
+
+    // 点击图层按钮弹出遮罩层
+    function clickLayer() {
+      $(".coverage_sing").css("left", "0")
+    }
+
+    //关闭图层弹窗
+    function clickLayerHide() {
+      $(".coverage_sing").css("left", "300%")
+    }
+
+    // 点击军标按钮弹出遮罩层
+    function clickSign() {
+      $(".coverage_sing").css("left", "0")
+    }
+
+    //关闭军标图层
+    function clickHideSign() {
+      $(".coverage_sing").css("left", "300%")
+    }
+  </script>
+</body>
+
+</html>

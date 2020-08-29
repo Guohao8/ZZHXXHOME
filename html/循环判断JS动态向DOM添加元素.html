@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/jquery-3.4.1.js"></script>
+  <style>
+    .xx ol {
+      list-style: none;
+    }
+
+    .xx ol img {
+      width: 48px;
+      height: 48px;
+      background-color: chartreuse;
+    }
+
+    .x1 {
+      height: 200px;
+      width: 200px;
+      border: 3px solid green;
+    }
+
+    .x2 {
+      height: 200px;
+      width: 200px;
+      border: 3px solid blue;
+    }
+
+    .x3 {
+      height: 200px;
+      width: 200px;
+      border: 3px solid red;
+    }
+
+    .active {
+      background-color: black !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="xx">
+    <ol class="x1"></ol>
+    <ol class="x2"></ol>
+    <ol class="x3"></ol>
+  </div>
+  <script>
+    var arr = {
+      "0": [{
+          id: 1,
+          name: "xxx1",
+          uiType: 0,
+          uiName: "机动",
+          img: "air_raid.jpg"
+        },
+        {
+          id: 2,
+          name: "xxx2",
+          uiType: 0,
+          uiName: "机动",
+          img: "banner.svg"
+        },
+        {
+          id: 3,
+          name: "xxx3",
+          uiType: 0,
+          uiName: "常用",
+          img: "circle.svg"
+        },
+        {
+          id: 4,
+          name: "xxx4",
+          uiType: 0,
+          uiName: "常用",
+          img: "bioch.jpg"
+        },
+        {
+          id: 5,
+          name: "xxx5",
+          uiType: 0,
+          uiName: "固定",
+          img: "left_arrow.svg"
+        },
+        {
+          id: 7,
+          name: "xxx7",
+          uiType: 0,
+          uiName: "固定",
+          img: "mine.svg"
+        },
+        {
+          id: 6,
+          name: "xxx6",
+          uiType: 0,
+          uiName: "固定",
+          img: "news.svg"
+        },
+      ]
+    }
+    var f1 = document.querySelector(".x1")
+    var f2 = document.querySelector(".x2")
+    var f3 = document.querySelector(".x3")
+    var arrX = arr[0]
+    for (var i = 0; i < arrX.length; i++) {
+      var arrXF = arrX[i]
+      if (arrXF.uiName == "机动") {
+        var a = document.createElement("li")
+        var img = document.createElement("img")
+        img.setAttribute("id", "xxxxx")
+        img.src = "img/" + arrXF.img
+        a.appendChild(img)
+        f1.appendChild(a)
+
+      } else if (arrXF.uiName == "常用") {
+        var b = document.createElement("li")
+        var img = document.createElement("img")
+        img.setAttribute("id", "fffff")
+        // img.setAttribute("onclick", "fffffff()")
+        img.src = "img/" + arrXF.img
+        b.appendChild(img)
+        f2.appendChild(b)
+
+      } else if (arrXF.uiName == "固定") {
+        var c = document.createElement("li")
+        var img = document.createElement("img")
+        img.setAttribute("id", "yyyyy")
+        img.src = "img/" + arrXF.img
+        c.appendChild(img)
+        f3.appendChild(c)
+      }
+    }
+    // 原生JS添加删除切换class
+    // function fffffff() {
+    //   document.getElementById("fffff").classList.toggle("active");
+    // }
+
+
+    // 动态切换
+    $(".xx ol img").on("click", function () {
+      // $(this).addClass("active").parent().siblings().find("img").removeClass("active")
+      if (!$(this).hasClass("active")) {
+        $(this).addClass("active").parentsUntil("xx").siblings().find("img").removeClass("active")
+      } else {
+        $(this).removeClass("active");
+      }
+    })
+
+
+    console.log(arrX)
+  </script>
+</body>
+
+</html>

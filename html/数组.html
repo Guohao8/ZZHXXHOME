@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <script>
+    // 
+    // 
+    //    splice    截取数组，可以进行增加，删除操作
+    //    slice     截取数组
+    //    push      在数组后面添加一个元素
+    //    pop       在数组后面删除一个元素
+    //    shift     在数组前面删除一个元素
+    //    unshift   在数组前面添加一个元素
+    //    every     只有数组中的元素全部为true时才返回true，只要有一个为false就返回false
+    //    some      只要数组有一个为true就返回true
+    //    sort      数组进行排序 
+    //    filter    数组元素过滤
+    //    find      数组差找元素
+    //    move      移动数组元素位置
+    //    map       映射（相当于复制（二次处理））
+    //    reduce    
+    // 
+    // 
+    // 
+
+
+
+    // 移动数组函数
+    function move(arr, from, to) {
+
+      if (from < 0 || to >= arr.length) {
+        alert("参数错误")
+        return
+      }
+      const newArray = [...array]
+      let item = newArray.splice(from, 1)
+      newArray.splice(to, 0, ...item)
+      return newArray
+    }
+
+    let array = [1, 2, 3, 4]
+    console.log(move(array, 2, 3))
+
+
+    // 实现find数组查找方法
+    function find(arr, callback) {
+      for (const value of arr) {
+        if (callback(value)) {
+          return value
+        }
+        return undefined
+      }
+    }
+    let arrayFind = [1, 2, 3, 4, 5]
+
+
+
+    // 实现sort数组排序方法
+    let arraySort = [1, 2, 3, 4, 5, 6]
+
+    function sort(array, callback) {
+      for (const n in array) {
+        for (const m in array) {
+          if (callback(array[n], array[m]) < 0) {
+            const temp = array[n]
+            array[n] = array[m]
+            array[m] = temp
+          }
+        }
+      }
+      return array
+    }
+    //排序 sort()  sort(function(a,b)) 
+    arr = sort(arraySort, function (a, b) {
+      // a - b  从小到大   b - a 从大到小
+      return a - b
+    })
+
+    // 实现filter函数
+    let arrFilter = [1, 2, 23, 4, 5]
+
+    function filter(array, callback) {
+      let newArrFilter = []
+      for (const value of arrFilter) {
+        if (callback(value) === true) {
+          newArrFilter.push(value)
+        }
+      }
+      return newArrFilter
+    }
+    console.log(filter(arrFilter,
+      function (value) {
+        return value > 2
+      }))
+
+    let goods = [{
+        name: "xx",
+        price: "10000"
+      },
+      {
+        name: "xxx",
+        price: "11000"
+      },
+      {
+        name: "xxxx",
+        price: "111000"
+      }
+    ]
+    // 过滤 去除重复
+    function filterGoods(goods) {
+      return goods.reduce(function (arr, cur) {
+        let find = arr.find(function (v) {
+          return v.name == cur.name
+        })
+        if (!find) arr.push(cur)
+        return arr
+      }, [])
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="input-group" style="width:146px;margin-left: 130px;">
+    <span class="input-group-btn">
+      <button class="btn" id="num-jian"
+        style="width:25px;border:1px solid #9e9e9e;margin-right:3px;color:#9e9e9e;background-color: #fff;"
+        type="button">—</button>
+    </span>
+    <input type="text" id="input-num" class="form-control"
+      style="width:35px;border:0px solid #fff;font-size:16px;color:#3366ff;text-align: center;" placeholder="设定"
+      value="1">
+    <span class="input-group-btn">
+      <button class="btn " id="num-jia"
+        style="width:25px;border:1px solid #3366ff;color:#3366ff;background-color: #fff;margin-left:3px;"
+        type="button">+</button>
+    </span>
+  </div>
+
+  <script>
+    var num_jia = document.getElementById("num-jia"); //加号
+    var num_jian = document.getElementById("num-jian"); //减号
+    var input_num = document.getElementById("input-num"); //数字显示
+    //加号按钮事件--鼠标按下
+    num_jia.onmousedown = function () {
+      var i = 0; //变量i
+      mouseTime = setInterval(function () { //setInterval可一直执行内部函数
+        add();
+        i++ //若过一秒，执行一次i++
+      }, 1000);
+      if (i == 0) { //i=0时证明无长按事件为单击事件
+        add();
+      }
+    }
+
+    function add() { //数字加1函数
+      if (input_num.value >= 30) {
+        input_num.value = 30;
+      } else {
+        input_num.value = parseInt(input_num.value) + 1;
+      }
+    }
+    num_jia.onmouseup = function () { //鼠标抬起，执行清除
+      clearInterval(mouseTime); //清除setInterval的时间
+    }
+    //减号按钮事件（内容基本同上，不予注释）    
+    num_jian.onmousedown = function () {
+      var i = 0;
+      mouseTime = setInterval(function () {
+        minus();
+        i++ //i=0时证明无长按事件为单击事件
+      }, 1000); //1000即1秒
+      if (i == 0) {
+        minus();
+      }
+    }
+
+    function minus() {
+      if (input_num.value <= 1) {
+        input_num.value = 1;
+      } else {
+        input_num.value = parseInt(input_num.value) - 1;
+      }
+    }
+    num_jian.onmouseup = function () {
+      clearInterval(mouseTime);
+    }
+  </script>
+</body>
+
+</html>

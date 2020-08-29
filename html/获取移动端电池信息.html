@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/jquery-3.4.1.js"></script>
+</head>
+
+<body>
+
+  <div id="xxx">
+    xxxxxxx
+  </div>
+  <script>
+    function updateBatteryStatus(battery) {
+      console.log(battery);
+      /* 只读. 一个布尔值,表示了系统电池的充电状态.如果电池正在充电,则返回true,其他情况,比如无法获取
+            系统电池的充电状态,或者系统不使用电池,或者电池不在充电,都返回false. */
+      console.log(battery.charging);
+      /* 只读. 一个数字,单位为秒.表示了系统的电池的电量等级,从0到1.0.如果电量已经完全消耗完,则返回0,
+            如果电量为充满状态,或者无法获取到这个等级值,以及如果系统没有电池,则返回1.0 */
+      console.log(battery.level * 100 + "%");
+      /* 只读.一个数字,单位为秒.表示了电池中的电量还剩多长时间会消耗完毕.如果电池正在充电,或者无法获取到
+            这个时间值,以及如果系统没有电池,则返回正无穷大. */
+      console.log(battery.dischargingTime / 60);
+      /* 只读. 一个整字,单位为秒.表示了电池还剩多长时间充满电.如果电池已经充满电了,则返回0.如果电池不在充电,
+            或者无法获取到这个时间值,则返回正无穷大. */
+      console.log(battery.chargingTime);
+      $("#xxx").append(battery.charging)
+      $("#xxx").append(battery.level * 100 + "%")
+      $("#xxx").append(battery.dischargingTime / 60)
+      $("#xxx").append(battery.chargingTime)
+    }
+
+    /* chargingchange;
+       当charging属性值发生改变时触发该事件.
+       chargingtimechange;
+       当chargingTime属性值发生改变时触发该事件.
+       dischargingtimechange;
+       当dischargingTime属性值发生改变时触发该事件.
+       levelchange;
+       当level属性值发生改变时触发该事件. */
+
+    navigator.getBattery().then(function (battery) {
+      updateBatteryStatus(battery);
+
+      battery.onchargingchange = function () {
+        updateBatteryStatus(battery);
+      };
+
+      battery.onlevelchange = function () {
+        updateBatteryStatus(battery);
+      };
+
+      battery.ondischargingtimechange = function () {
+        updateBatteryStatus(battery);
+      };
+    });
+
+
+    // charging	                    是否在充电	                                      只可读
+    // chargingTime	                若在充电，那么还需充电的事件	                      只可读
+    // dischargingTime	            剩余电量	                                        只可读
+    // level	                      剩余电量的百分数(小数)	                           只可读
+    // onchargingchange	            监听充电状态的改变	                                监听事件
+    // onchargingtimechange	      	监听充电时间的改变                                  监听事件
+    // ondischargingtimechange	    监听电池可用时间的改变	                            监听事件
+    // onlevelchange	              监听剩余电量百分数的改变	                           监听事件
+  </script>
+</body>
+
+</html>

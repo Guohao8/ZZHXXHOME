@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="text" name="PASSWORD">
+  <span></span>
+  <script>
+    let ps = document.querySelector("[name='PASSWORD']")
+    ps.addEventListener("keyup", function () {
+      this.value = this.value.trim() //去除空格，如果有空格就删除，为空
+      let span = document.getElementsByTagName("span")
+      let error = '' //错误信息，外部置为空
+      if (this.value.length < 5) {
+        error = "密码长度不得小于五位"
+      }
+      span[0].innerHTML = error
+    })
+  </script>
+</body>
+
+</html>

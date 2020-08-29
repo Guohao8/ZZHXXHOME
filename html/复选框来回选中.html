@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="jquery-3.4.1.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="radio">xxxxx
+  <input type="radio">xxxxx
+  <input type="radio">xxxxx<input type="radio">xxxxx
+
+  <script>
+    $('input:radio').click(function () {
+      var $radio = $(this);
+      if ($radio.data('checked')) {
+        $radio.prop('checked', false);
+        $radio.data('checked', false);
+      } else {
+        $radio.prop('checked', true);
+        $radio.data('checked', true);
+      }
+    });
+  </script>
+</body>
+
+</html>

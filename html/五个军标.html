@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 是否编辑按钮 */
+    .switch {
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      background: #fff;
+      position: fixed;
+      z-index: 999;
+      right: 10px;
+      bottom: 86px;
+      border-radius: 50%;
+    }
+
+    .switch .switch_edit {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid rgb(0, 122, 204);
+      box-sizing: content-box;
+      margin: 10px;
+    }
+
+    .switch_edit_small {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgb(0, 122, 204);
+      margin: 3px;
+    }
+
+    .switch_green {
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      background: #fff;
+      position: fixed;
+      z-index: 999;
+      right: 10px;
+      bottom: 136px;
+      border-radius: 50%;
+    }
+
+    .switch_edit_green {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid rgb(0, 204, 136);
+      box-sizing: content-box;
+      margin: 10px;
+    }
+
+    .switch_edit_small_green {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgb(0, 204, 136);
+      margin: 3px;
+    }
+
+    .switch_blank {
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      background: #fff;
+      position: fixed;
+      z-index: 999;
+      right: 10px;
+      bottom: 186px;
+      border-radius: 50%;
+    }
+
+    .switch_edit_blank {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid rgb(22, 26, 24);
+      box-sizing: content-box;
+      margin: 10px;
+    }
+
+    .switch_edit_small_blank {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgb(22, 26, 24);
+      margin: 3px;
+    }
+
+    .switch_pick {
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      background: #fff;
+      position: fixed;
+      z-index: 999;
+      right: 10px;
+      bottom: 236px;
+      border-radius: 50%;
+    }
+
+    .switch_edit_pick {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid rgb(218, 102, 193);
+      box-sizing: content-box;
+      margin: 10px;
+    }
+
+    .switch_edit_small_pick {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgb(218, 102, 193);
+      margin: 3px;
+    }
+
+    .switch_yellow {
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      background: #fff;
+      position: fixed;
+      z-index: 999;
+      right: 10px;
+      bottom: 286px;
+      border-radius: 50%;
+    }
+
+    .switch_edit_yellow {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid rgb(213, 221, 169);
+      box-sizing: content-box;
+      margin: 10px;
+    }
+
+    .switch_edit_small_yellow {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgb(213, 221, 169);
+      margin: 3px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 是否可以编辑 添加icon -->
+  <div class="switch" onclick="switchEdit(1)">
+    <div class="switch_edit">
+      <div class="switch_edit_small"></div>
+    </div>
+  </div>
+
+  <div class="switch_green" onclick="switchEditGreen(2)">
+    <div class="switch_edit_green">
+      <div class="switch_edit_small_green"></div>
+    </div>
+  </div>
+
+  <div class="switch_blank" onclick="switchEditBlank(3)">
+    <div class="switch_edit_blank">
+      <div class="switch_edit_small_blank"></div>
+    </div>
+  </div>
+
+  <div class="switch_pick" onclick="switchEditPick(4)">
+    <div class="switch_edit_pick">
+      <div class="switch_edit_small_pick"></div>
+    </div>
+  </div>
+
+  <div class="switch_yellow" onclick="switchEditYellow(5)">
+    <div class="switch_edit_yellow">
+      <div class="switch_edit_small_yellow"></div>
+    </div>
+  </div>
+
+  <script>
+    var iconId;
+
+    function switchEdit(e) {
+      var test1 = document.getElementById("test1");
+
+      if (mapMarking === 0) {
+        iconId = e;
+        mapMarking = 1;
+        $(".switch_edit").css("border", "2px solid red");
+        $(".switch_edit_small").css("background-color", "red");
+      } else {
+        if (e == iconId) {
+          mapMarking = 0;
+          iconId = 0;
+          $(".switch_edit").css("border", " 2px solid rgb(0, 122, 204)");
+          $(".switch_edit_small").css("background", "rgb(0, 122, 204)");
+        } else {
+          $(".switch_edit_green").css(
+            "border",
+            " 2px solid rgb(0, 204, 136)"
+          );
+          $(".switch_edit_small_green").css("background", "rgb(0, 204, 136)");
+          $(".switch_edit_blank").css("border", " 2px solid rgb(22, 26, 24)");
+          $(".switch_edit_small_blank").css("background", "rgb(22, 26, 24)");
+          $(".switch_edit_pick").css(
+            "border",
+            " 2px solid rgb(218, 102, 193)"
+          );
+          $(".switch_edit_small_pick").css(
+            "background",
+            "rgb(218, 102, 193)"
+          );
+          $(".switch_edit_yellow").css(
+            "border",
+            " 2px solid rgb(213, 221, 169)"
+          );
+          $(".switch_edit_small_yellow").css(
+            "background",
+            "rgb(213, 221, 169)"
+          );
+
+          iconId = e;
+          $(".switch_edit").css("border", "2px solid red");
+          $(".switch_edit_small").css("background-color", "red");
+        }
+      }
+    }
+
+    function switchEditGreen(e) {
+      var test1 = document.getElementById("test1");
+
+      if (mapMarking === 0) {
+        iconId = e;
+        mapMarking = 1;
+        $(".switch_edit_green").css("border", "2px solid red");
+        $(".switch_edit_small_green").css("background-color", "red");
+      } else {
+        if (e == iconId) {
+          mapMarking = 0;
+          iconId = 0;
+          $(".switch_edit_green").css(
+            "border",
+            " 2px solid rgb(0, 204, 136)"
+          );
+          $(".switch_edit_small_green").css("background", "rgb(0, 204, 136)");
+        } else {
+          $(".switch_edit").css("border", " 2px solid rgb(0, 122, 204)");
+          $(".switch_edit_small").css("background", "rgb(0, 122, 204)");
+          $(".switch_edit_blank").css("border", " 2px solid rgb(22, 26, 24)");
+          $(".switch_edit_small_blank").css("background", "rgb(22, 26, 24)");
+          $(".switch_edit_pick").css(
+            "border",
+            " 2px solid rgb(218, 102, 193)"
+          );
+          $(".switch_edit_small_pick").css(
+            "background",
+            "rgb(218, 102, 193)"
+          );
+          $(".switch_edit_yellow").css(
+            "border",
+            " 2px solid rgb(213, 221, 169)"
+          );
+          $(".switch_edit_small_yellow").css(
+            "background",
+            "rgb(213, 221, 169)"
+          );
+
+          iconId = e;
+          $(".switch_edit_green").css("border", "2px solid red");
+          $(".switch_edit_small_green").css("background-color", "red");
+        }
+      }
+    }
+
+    function switchEditBlank(e) {
+      var test1 = document.getElementById("test1");
+
+      if (mapMarking === 0) {
+        iconId = e;
+        mapMarking = 1;
+        $(".switch_edit_blank").css("border", "2px solid red");
+        $(".switch_edit_small_blank").css("background-color", "red");
+      } else {
+        if (e == iconId) {
+          mapMarking = 0;
+          $(".switch_edit_blank").css("border", " 2px solid rgb(22, 26, 24)");
+          $(".switch_edit_small_blank").css("background", "rgb(22, 26, 24)");
+        } else {
+          $(".switch_edit").css("border", " 2px solid rgb(0, 122, 204)");
+          $(".switch_edit_small").css("background", "rgb(0, 122, 204)");
+          $(".switch_edit_green").css(
+            "border",
+            " 2px solid rgb(0, 204, 136)"
+          );
+          $(".switch_edit_small_green").css("background", "rgb(0, 204, 136)");
+          $(".switch_edit_pick").css(
+            "border",
+            " 2px solid rgb(218, 102, 193)"
+          );
+          $(".switch_edit_small_pick").css(
+            "background",
+            "rgb(218, 102, 193)"
+          );
+          $(".switch_edit_yellow").css(
+            "border",
+            " 2px solid rgb(213, 221, 169)"
+          );
+          $(".switch_edit_small_yellow").css(
+            "background",
+            "rgb(213, 221, 169)"
+          );
+
+          iconId = e;
+          $(".switch_edit_blank").css("border", "2px solid red");
+          $(".switch_edit_small_blank").css("background-color", "red");
+        }
+      }
+    }
+
+    function switchEditPick(e) {
+      var test1 = document.getElementById("test1");
+
+      if (mapMarking === 0) {
+        iconId = e;
+        mapMarking = 1;
+        $(".switch_edit_pick").css("border", "2px solid red");
+        $(".switch_edit_small_pick").css("background-color", "red");
+      } else {
+        if (e == iconId) {
+          mapMarking = 0;
+          $(".switch_edit_pick").css(
+            "border",
+            " 2px solid rgb(218, 102, 193)"
+          );
+          $(".switch_edit_small_pick").css(
+            "background",
+            "rgb(218, 102, 193)"
+          );
+        } else {
+          $(".switch_edit").css("border", " 2px solid rgb(0, 122, 204)");
+          $(".switch_edit_small").css("background", "rgb(0, 122, 204)");
+          $(".switch_edit_green").css(
+            "border",
+            " 2px solid rgb(0, 204, 136)"
+          );
+          $(".switch_edit_small_green").css("background", "rgb(0, 204, 136)");
+          $(".switch_edit_blank").css("border", " 2px solid rgb(22, 26, 24)");
+          $(".switch_edit_small_blank").css("background", "rgb(22, 26, 24)");
+          $(".switch_edit_yellow").css(
+            "border",
+            " 2px solid rgb(213, 221, 169)"
+          );
+          $(".switch_edit_small_yellow").css(
+            "background",
+            "rgb(213, 221, 169)"
+          );
+
+          iconId = e;
+          $(".switch_edit_pick").css("border", "2px solid red");
+          $(".switch_edit_small_pick").css("background-color", "red");
+        }
+      }
+    }
+
+    function switchEditYellow(e) {
+      var test1 = document.getElementById("test1");
+
+      if (mapMarking === 0) {
+        iconId = e;
+        mapMarking = 1;
+        $(".switch_edit_yellow").css("border", "2px solid red");
+        $(".switch_edit_small_yellow").css("background-color", "red");
+      } else {
+        if (e == iconId) {
+          mapMarking = 0;
+          $(".switch_edit_yellow").css(
+            "border",
+            " 2px solid rgb(213, 221, 169)"
+          );
+          $(".switch_edit_small_yellow").css(
+            "background",
+            "rgb(213, 221, 169)"
+          );
+        } else {
+          $(".switch_edit").css("border", " 2px solid rgb(0, 122, 204)");
+          $(".switch_edit_small").css("background", "rgb(0, 122, 204)");
+          $(".switch_edit_green").css(
+            "border",
+            " 2px solid rgb(0, 204, 136)"
+          );
+          $(".switch_edit_small_green").css("background", "rgb(0, 204, 136)");
+          $(".switch_edit_blank").css("border", " 2px solid rgb(22, 26, 24)");
+          $(".switch_edit_small_blank").css("background", "rgb(22, 26, 24)");
+          $(".switch_edit_pick").css(
+            "border",
+            " 2px solid rgb(218, 102, 193)"
+          );
+          $(".switch_edit_small_pick").css(
+            "background",
+            "rgb(218, 102, 193)"
+          );
+
+          iconId = e;
+          $(".switch_edit_yellow").css("border", "2px solid red");
+          $(".switch_edit_small_yellow").css("background-color", "red");
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>

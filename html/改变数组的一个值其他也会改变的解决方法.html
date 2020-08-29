@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 今天写了一段比较繁杂的多重循环 , 其中第一层循环是为了给数组中的对象元素赋值
+
+    $.each(dataList, function (i, arr) {
+      let payArr = [];
+      data.forEach(v => {
+        for (var key in arr) {
+          if ('pay' + v.payNo == key && arr[key] != null && arr[key] !== '0.00') {
+            v.payAmount = arr[key];
+            payArr.push(v);
+          }
+        }
+      });
+      dataList[i].payArr = payArr; //出现错误的点在这儿
+    });
+    //  我把组装起来的一个数组赋值给第一层循环的数组中的对象 , 我明明做的是循环赋值 , 但是每次赋值完之后 ,dataList 里所有对象元素的payArr都会一起变 , 变成同一个 , 在下不才整整花了近三个小时在这个问题上面 , 一开始想过是不是变量定位的位置不对 ,或者是循环方式有问题 ,所有换遍了 forEach 和 $.each 和for  , 终于还是没有解决 ,后面看到一位博主给出思路 , 由于数组是引用变量 ,进行引用赋值 , 其实还是原来的数组 , 也就是说 ,我循环赋给dataList里的payArr其实一直都是同一个地址里存的同一个数组 , 所以 ,最后一次修改payArr 后 ,每个引用都一起改掉了 , 那么怎么解决呢 ?
+
+    dataList[i].payArr = JSON.parse(JSON.stringify(payArr));
+    //  原理就是先把数组转换成字符串再转换成对象 ,这样会新分配一块内存新创建一个对象 ,问题解决 ,这是一个基础坑, 填上了,希望会对和我遇到同样问题的各位有用.
+  </script>
+</body>
+
+</html>

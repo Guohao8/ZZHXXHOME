@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>tab</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <style>
+    .bgbox {
+      width: 500px;
+      margin: 50px auto;
+    }
+
+    .tab-top {
+      width: 500px;
+      margin: auto;
+    }
+
+    .tab-top li {
+      width: 24%;
+      line-height: 40px;
+      border: 1px solid #ccc;
+    }
+
+    .tabbox .boxlist {
+      display: none;
+      width: 500px;
+      height: 200px;
+      border: 1px solid #ccc;
+      background: pink;
+
+    }
+
+    .active {
+      color: red;
+      background: #1890ff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bgbox">
+    <ul class="clearfix tab-top" id="tabcilk">
+      <li class="fl active">1</li>
+      <li class="fl">2</li>
+      <li class="fl">3</li>
+      <li class="fl">4</li>
+    </ul>
+    <div class="tabbox" id="tabbox">
+      <div class="boxlist " style="display: block;">1</div>
+      <div class="boxlist">2</div>
+      <div class="boxlist">3</div>
+      <div class="boxlist">4</div>
+    </div>
+  </div>
+</body>
+<script>
+  var ali = document.getElementById("tabcilk").getElementsByTagName("li");
+  var adiv = document.getElementById("tabbox").getElementsByTagName("div");
+
+  function tab(btn, boxlist) {
+    for (var i = 0; i < btn.length; i++) {
+      btn[i].index = i;
+      btn[i].onclick = function () {
+        //alert(this.index );   
+        for (var j = 0; j < btn.length; j++) {
+          btn[j].classList.remove("active")
+          boxlist[j].style.display = "none";
+          btn[this.index].classList.add("active");
+          boxlist[this.index].style.display = "block";
+        }
+      }
+    }
+  }
+
+
+  tab(ali, adiv);
+</script>
+
+</html>

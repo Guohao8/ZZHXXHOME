@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var obj = {
+      "0": [{
+          "id": 1,
+          "imgByte": "data:image/bmp;base64,null",
+          "imgFilePath": "/data/apps/com.huawei.helloemss/res/jb_files\r/jb1.bmp",
+          "type": 0
+        },
+        {
+          "id": 2,
+          "imgByte": "data:image/bmp;base64,null",
+          "imgFilePath": "/data/apps/com.huawei.helloemss/res/jb_files\r/jb2.bmp",
+          "type": 0
+        }
+      ]
+    };
+
+
+    debugger;
+    for (var i = 0; i < obj[0].length; i++) {
+      var item = obj[0][i];
+      console.log(item.imgFilePath);
+    }
+  </script>
+</body>
+
+</html>

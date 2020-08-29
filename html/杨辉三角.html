@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    span {
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <script>
+    function xx(row) {
+      for (let i = 1; i < row; i++) {
+        for (let j = row - i; j > 0; j--) {
+          document.write(`<span>*</span>`)
+        }
+        for (let n = i * 2 - 1; n > 0; n--) {
+          document.write("*")
+        }
+
+        document.write("<br>")
+      }
+    }
+    xx(20)
+  </script>
+</body>
+
+</html>

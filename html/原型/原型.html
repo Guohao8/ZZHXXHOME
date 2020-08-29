@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 原型也是个对象，就是个普通对象
+    let xx = {
+      name: "xinxin"
+    }
+    console.log(xx)
+    console.log(xx.hasOwnProperty("name")) //true
+
+    // 完全数据字面量创建对象
+    // null 表示父级，指定原型
+    let ff = Object.create(null, {
+      name: {
+        value: "xxxxxxxxxx"
+      }
+    })
+
+    console.log(ff) // 没有_proto_
+    // console.log(ff.hasOwnProperty("name")) // false
+
+    let hd = new Object()
+    hd.name = "xxxxx"
+    // 给object原型上添加一个方法show
+    Object.prototype.show = function () {
+      console.log("aaaaa")
+    }
+    hd.show()
+
+    function User() {}
+    // User.prototype.__proto__ == Object.prototype
+    console.log(User.prototype.__proto__ == Object.prototype)
+    // User.__proto__.__proto__ == Object.prototype
+    console.log(User.__proto__.__proto__ == Object.prototype)
+    console.dir(User)
+
+    let aaa = new User()
+    aaa.show()
+
+
+    let obj = {} //new Object()
+    console.log(obj.__proto__ == Object.prototype)
+
+    let arr = [] //new Array()
+    console.log(arr.__proto__ == Array.prototype)
+
+    let str = '' //new String()
+    console.log(str.__proto__ == String.prototype)
+
+    // 对象的原型（__proto__）指向构造函数的原型（prototype）
+
+    // 设置对象的原型三种方法：
+    // 1.Object.create(obj,propertiesObject )  该方法只能设置原型，不能获取原型
+    // obj  表示设置提供的新创建的对象的原型
+    // propertiesObject   可以传入一些属性,可以使用原型上面的方法
+
+    // 2.__proto__  浏览器厂商提供的方法,非标准.  
+    // hd.__proto__ = user   将user设置为hd的原型
+
+    // object.setPrototypeOf(hd,user)  设置hd的原型为user
+    // object.getPrototypeOf(hd)  获取原型,获取hd的原型
+
+    // __proto__ 不是一个严格意义上的一个属性,它是get  set 的结合
+    // 也就是说没办法给一个变量设置一个名为__proto__的属性，也就是说没法hd.__proto__ = "xxx" ,这样是无效的
+    // 想要设置一个名为__proto__的属性，因为__proto__这个属性是在原型上，所以只要将对象不继承这个原型就行
+    // 首先要将变量的原型设为空，也就是let hd = Object.create(null)  然后再 hd.__proto__ = "xxx"  这就是可以设置的
+
+
+    // 通过构造函数创建的对象，对象的原型会自动指向构造函数的原型
+  </script>
+</body>
+
+</html>

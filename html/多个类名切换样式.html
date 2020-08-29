@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/jquery-3.4.1.js"></script>
+  <style>
+    .green {
+      width: 200px;
+      height: 200px;
+      background-color: green;
+    }
+
+    .red {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+    }
+
+    .blue {
+      width: 200px;
+      height: 200px;
+      background-color: blue;
+    }
+
+    .check {
+      border: 5px solid black;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="green">
+    xxxx
+  </div>
+  <div class="red">
+    xxxx
+  </div>
+  <div class="blue">
+    xxxx
+  </div>
+
+  <script>
+    $("div").on("click", function () {
+      $(this).addClass("check").siblings("div").removeClass("check")
+    })
+  </script>
+</body>
+
+</html>

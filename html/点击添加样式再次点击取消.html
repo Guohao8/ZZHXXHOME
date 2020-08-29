@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <script src="js/jquery-3.4.1.js"></script>
+  <style>
+    .btm {
+      background-color: red;
+      width: 500px;
+      height: 500px;
+    }
+
+
+
+    .btm ul li {
+      width: 80px;
+      height: 80px;
+      background-color: blue;
+      display: inline-block;
+      margin-top: 10px;
+      margin-right: 5px;
+    }
+
+    .btm ul li.active {
+      border: 5px solid green;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="btm">
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+    </ul>
+  </div>
+
+  <script>
+    var isClick = false
+    $(".btm li ").on("click", function () {
+      isClick = !isClick
+      if (isClick) {
+        $(this).addClass("active").siblings("li").removeClass("active")
+      } else {
+        $(this).removeClass("active")
+      }
+    });
+  </script>
+</body>
+
+</html>

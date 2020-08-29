@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const xx = 123;
+
+
+    {
+      const xx = 321
+      console.log(xx) //321 先打印
+    }
+
+
+    console.log(xx) //123  后打印 因为不是在同级作用域下的const不会受影响
+  </script>
+</body>
+
+</html>
